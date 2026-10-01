@@ -35,7 +35,7 @@ export const site: SiteData = {
   ogImage: "", // path to og image in public/, e.g. "/og-image.jpg"
   areas: {
     civil: "Disputes, suits, and civil matters before trial and appellate courts.",
-    criminal: "Bail, trial defense, and advisory across criminal proceedings.",
+    criminal: "Bail, trial defence, and advisory across criminal proceedings.",
     family: "Divorce, custody, maintenance, and domestic matters.",
     documentation: "Drafting of agreements, affidavits, notices, and legal deeds.",
   },
