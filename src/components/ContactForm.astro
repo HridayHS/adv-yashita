@@ -1,0 +1,176 @@
+---
+// ContactForm — Netlify Forms with submit validation + URL-encoded body
+// NOTE: Netlify form notifications to her email must be enabled in the Netlify
+// dashboard (Forms → Form notifications). The form only works after deployment.
+---
+<section
+  id="contact"
+  aria-labelledby="contact-heading"
+  class="py-14 px-6 bg-surface border-t border-border"
+>
+  <div class="mx-auto max-w-2xl">
+    <h2
+      id="contact-heading"
+      class="font-serif text-3xl font-semibold text-navy mb-2"
+    >
+      Send an inquiry
+    </h2>
+    <p class="font-sans text-muted text-sm mb-8">
+      Fill in the form below to send an inquiry.
+    </p>
+
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="flex flex-col gap-5"
+      novalidate
+      id="contact-form"
+    >
+      <p class="hidden" aria-hidden="true">
+        <label>Don't fill this: <input name="bot-field" /></label>
+      </p>
+      <input type="hidden" name="form-name" value="contact" />
+
+      <div class="flex flex-col gap-1">
+        <label for="cf-name" class="font-sans text-sm font-medium text-navy">
+          Your Name <span class="text-red-500" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text" id="cf-name" name="name" required autocomplete="name" maxlength="100"
+          placeholder="Full name" aria-required="true" aria-describedby="name-error"
+          class="min-h-[44px] rounded-sm border border-border bg-white px-3 py-2 font-sans text-sm text-body placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-colors"
+        />
+        <span id="name-error" class="font-sans text-xs text-red-600 hidden" role="alert">
+          Please enter your name.
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="cf-phone" class="font-sans text-sm font-medium text-navy">
+          Phone Number <span class="text-red-500" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="tel" id="cf-phone" name="phone" required autocomplete="tel"
+          placeholder="+91 XXXXX XXXXX" aria-required="true" aria-describedby="phone-error"
+          class="min-h-[44px] rounded-sm border border-border bg-white px-3 py-2 font-sans text-sm text-body placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-colors"
+        />
+        <span id="phone-error" class="font-sans text-xs text-red-600 hidden" role="alert">
+          Please enter a valid phone number (7–15 digits).
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="cf-message" class="font-sans text-sm font-medium text-navy">
+          Brief Description <span class="text-red-500" aria-hidden="true">*</span>
+        </label>
+        <textarea
+          id="cf-message" name="message" required rows="4" maxlength="1000"
+          placeholder="Briefly describe your inquiry…"
+          aria-required="true" aria-describedby="message-error"
+          class="rounded-sm border border-border bg-white px-3 py-2 font-sans text-sm text-body placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-colors resize-none"
+        ></textarea>
+        <span id="message-error" class="font-sans text-xs text-red-600 hidden" role="alert">
+          Please describe your inquiry.
+        </span>
+      </div>
+
+      <button
+        type="submit"
+        class="min-h-[48px] rounded-md bg-navy hover:bg-navy-light active:scale-[0.98] transition-colors duration-150 font-sans font-semibold text-white text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+      >
+        Send inquiry
+      </button>
+
+      <p id="form-status" class="font-sans text-sm text-center text-muted hidden" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!--SCRIPT_PLACEHOLDER-->
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+
+  function validateAll(): boolean {
+    const nameInput = document.getElementById("cf-name") as HTMLInputElement;
+    const phoneInput = document.getElementById("cf-phone") as HTMLInputElement;
+    const messageInput = document.getElementById("cf-message") as HTMLTextAreaElement;
+    const nameError = document.getElementById("name-error");
+    const phoneError = document.getElementById("phone-error");
+    const messageError = document.getElementById("message-error");
+
+    let valid = true;
+    let firstInvalid: HTMLElement | null = null;
+
+    if (!nameInput.value.trim() || nameInput.value.length > 100) {
+      nameError?.classList.remove("hidden");
+      nameInput.setAttribute("aria-invalid", "true");
+      valid = false;
+      firstInvalid = firstInvalid || nameInput;
+    } else {
+      nameError?.classList.add("hidden");
+      nameInput.removeAttribute("aria-invalid");
+    }
+
+    const phoneDigits = phoneInput.value.replace(/[\s\-]/g, "").replace(/^\+/, "");
+    const phoneValid = /^\d{7,15}$/.test(phoneDigits);
+    if (!phoneValid) {
+      phoneError?.classList.remove("hidden");
+      phoneInput.setAttribute("aria-invalid", "true");
+      valid = false;
+      firstInvalid = firstInvalid || phoneInput;
+    } else {
+      phoneError?.classList.add("hidden");
+      phoneInput.removeAttribute("aria-invalid");
+    }
+
+    if (!messageInput.value.trim() || messageInput.value.length > 1000) {
+      messageError?.classList.remove("hidden");
+      messageInput.setAttribute("aria-invalid", "true");
+      valid = false;
+      firstInvalid = firstInvalid || messageInput;
+    } else {
+      messageError?.classList.add("hidden");
+      messageInput.removeAttribute("aria-invalid");
+    }
+
+    if (!valid && firstInvalid) firstInvalid.focus();
+    return valid;
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!validateAll()) return;
+
+    const status = document.getElementById("form-status") as HTMLParagraphElement;
+    const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+
+    try {
+      const formData = new FormData(form);
+      const body = new URLSearchParams(formData as any).toString();
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      });
+
+      if (!res.ok) throw new Error("Form submission failed");
+
+      form.reset();
+      status.textContent = "Inquiry sent.";
+      status.className = "font-sans text-sm text-center text-green-700";
+    } catch {
+      status.textContent = "Could not send. Please try WhatsApp or call directly.";
+      status.className = "font-sans text-sm text-center text-red-600";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Send inquiry";
+      status.classList.remove("hidden");
+    }
+  });
+</script>
+

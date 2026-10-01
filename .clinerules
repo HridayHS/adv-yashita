@@ -1,0 +1,17 @@
+# Bar Council of India Compliance Rules
+
+## Content Rules
+- Purpose: informational only, never advertising or solicitation
+- Banned words: best, top, leading, expert, specialist, trust, free consultation, fees, offers, testimonials, results, client names, urgency CTAs
+- CTAs must be neutral: "Contact", "Send an inquiry", "Message on WhatsApp"
+- Use "advocate-client", never "attorney"
+- No invented facts — unknown values go in src/data/site.ts as empty strings
+- Lines with empty values are not rendered
+- No visible "TODO" on the page
+- No emoji or gavel/scales/pillar imagery
+
+## Technical Stack
+- Astro 7 + Tailwind 4 + Netlify Forms
+- No React
+- Use design-taste-frontend and full-output-enforcement skills
+- Do not use vercel-react-best-practices

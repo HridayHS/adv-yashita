@@ -1,0 +1,37 @@
+---
+import { site } from "../data/site";
+
+// Build bio from site data only — no invented content
+const bioParts: string[] = [];
+if (site.enrolmentNumber && site.enrolmentBody) {
+  bioParts.push(`${site.name} is enrolled with ${site.enrolmentBody}${site.enrolmentYear ? ` (${site.enrolmentYear})` : ''} as enrolment number ${site.enrolmentNumber}.`);
+} else if (site.enrolmentBody) {
+  bioParts.push(`${site.name} is enrolled with ${site.enrolmentBody}${site.enrolmentYear ? ` (${site.enrolmentYear})` : ''}.`);
+}
+if (site.degree) {
+  bioParts.push(`${site.degree}.`);
+}
+if (site.courts) {
+  bioParts.push(`Practises in ${site.courts}.`);
+}
+---
+{bioParts.length > 0 && (
+  <section
+    id="about"
+    aria-labelledby="about-heading"
+    class="py-14 px-6 bg-surface-raised border-t border-border"
+  >
+    <div class="mx-auto max-w-2xl">
+      <h2
+        id="about-heading"
+        class="font-serif text-3xl font-semibold text-navy mb-6"
+      >
+        About {site.name}
+      </h2>
+      <div class="font-sans text-body leading-relaxed space-y-4 text-base">
+        {bioParts.map((part) => <p>{part}</p>)}
+      </div>
+    </div>
+  </section>
+)}
+

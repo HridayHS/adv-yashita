@@ -1,0 +1,53 @@
+---
+import { site } from "../data/site";
+---
+<section
+  id="practice"
+  aria-labelledby="practice-heading"
+  class="py-14 px-6 bg-surface"
+>
+  <div class="mx-auto max-w-2xl">
+    <h2
+      id="practice-heading"
+      class="font-serif text-3xl font-semibold text-navy mb-8"
+    >
+      Areas of Practice
+    </h2>
+
+    <ul role="list" class="divide-y divide-border">
+      <li class="py-4">
+        <h3 class="font-serif text-base font-semibold text-navy mb-1">
+          Civil matters
+        </h3>
+        <p class="font-sans text-sm text-body leading-relaxed">
+          {site.areas.civil}
+        </p>
+      </li>
+      <li class="py-4">
+        <h3 class="font-serif text-base font-semibold text-navy mb-1">
+          Criminal matters
+        </h3>
+        <p class="font-sans text-sm text-body leading-relaxed">
+          {site.areas.criminal}
+        </p>
+      </li>
+      <li class="py-4">
+        <h3 class="font-serif text-base font-semibold text-navy mb-1">
+          Family matters
+        </h3>
+        <p class="font-sans text-sm text-body leading-relaxed">
+          {site.areas.family}
+        </p>
+      </li>
+      <li class="py-4">
+        <h3 class="font-serif text-base font-semibold text-navy mb-1">
+          Documentation
+        </h3>
+        <p class="font-sans text-sm text-body leading-relaxed">
+          {site.areas.documentation}
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
