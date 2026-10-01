@@ -5,17 +5,17 @@ export interface SiteData {
   enrolmentNumber: string;
   enrolmentBody: string;
   enrolmentYear: string;
-  degree: string;
+  education: string;
   courts: string;
+  languages: string;
   phone: string;
   whatsapp: string;
   email: string;
   instagram: string;
-  ogImage: string;
   areas: {
     civil: string;
-    criminal: string;
     family: string;
+    commercial: string;
     documentation: string;
   };
 }
@@ -26,17 +26,17 @@ export const site: SiteData = {
   enrolmentNumber: "D/6409/2026",
   enrolmentBody: "Bar Council of Delhi",
   enrolmentYear: "2026",
-  degree: "", // e.g. "LLB, University of Delhi"
+  education: "", // e.g. "LLB, University of Delhi"
   courts: "", // e.g. "District Courts, Delhi"
+  languages: "", // e.g. "English, Hindi"
   phone: "+919811131750",
   whatsapp: "919811131750",
   email: "yashitarajput47@gmail.com",
   instagram: "adv_yashita.rajput",
-  ogImage: "", // path to og image in public/, e.g. "/og-image.jpg"
   areas: {
     civil: "Disputes, suits, and civil matters before trial and appellate courts.",
-    commercial: "Contracts, agreements, disputes, and advisory for business transactions.",
     family: "Divorce, custody, maintenance, and domestic matters.",
+    commercial: "Contract disputes, recovery, and commercial agreements.",
     documentation: "Drafting of agreements, affidavits, notices, and legal deeds.",
   },
 };
