@@ -6,85 +6,104 @@
 <section
   id="contact"
   aria-labelledby="contact-heading"
-  class="py-14 px-6 bg-surface border-t border-border"
+  class="py-20 px-6 relative"
 >
   <div class="mx-auto max-w-2xl">
-    <h2
-      id="contact-heading"
-      class="font-serif text-3xl font-semibold text-navy mb-2"
-    >
-      Send an inquiry
-    </h2>
-    <p class="font-sans text-muted text-sm mb-8">
-      Please do not include confidential details here.
-    </p>
-
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      class="flex flex-col gap-5"
-      novalidate
-      id="contact-form"
-    >
-      <p class="hidden" aria-hidden="true">
-        <label>Don't fill this: <input name="bot-field" /></label>
-      </p>
-      <input type="hidden" name="form-name" value="contact" />
-
-      <div class="flex flex-col gap-1">
-        <label for="cf-name" class="font-sans text-sm font-medium text-navy">
-          Your Name <span class="text-red-500" aria-hidden="true">*</span>
-        </label>
-        <input
-          type="text" id="cf-name" name="name" required autocomplete="name" maxlength="100"
-          placeholder="Full name" aria-required="true" aria-describedby="name-error"
-          class="min-h-[44px] rounded-sm border border-border bg-white px-3 py-2 font-sans text-sm text-body placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-colors"
-        />
-        <span id="name-error" class="font-sans text-xs text-red-600 hidden" role="alert">
-          Please enter your name.
-        </span>
-      </div>
-
-      <div class="flex flex-col gap-1">
-        <label for="cf-phone" class="font-sans text-sm font-medium text-navy">
-          Phone Number <span class="text-red-500" aria-hidden="true">*</span>
-        </label>
-        <input
-          type="tel" id="cf-phone" name="phone" required autocomplete="tel"
-          placeholder="+91 XXXXX XXXXX" aria-required="true" aria-describedby="phone-error"
-          class="min-h-[44px] rounded-sm border border-border bg-white px-3 py-2 font-sans text-sm text-body placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-colors"
-        />
-        <span id="phone-error" class="font-sans text-xs text-red-600 hidden" role="alert">
-          Please enter a valid phone number (7–15 digits).
-        </span>
-      </div>
-
-      <div class="flex flex-col gap-1">
-        <label for="cf-message" class="font-sans text-sm font-medium text-navy">
-          Brief Description <span class="text-red-500" aria-hidden="true">*</span>
-        </label>
-        <textarea
-          id="cf-message" name="message" required rows="4" maxlength="1000"
-          placeholder="Briefly describe your inquiry…"
-          aria-required="true" aria-describedby="message-error"
-          class="rounded-sm border border-border bg-white px-3 py-2 font-sans text-sm text-body placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy transition-colors resize-none"
-        ></textarea>
-        <span id="message-error" class="font-sans text-xs text-red-600 hidden" role="alert">
-          Please describe your inquiry.
-        </span>
-      </div>
-
-      <button
-        type="submit"
-        class="min-h-[48px] rounded-md bg-navy hover:bg-navy-light active:scale-[0.98] transition-colors duration-150 font-sans font-semibold text-white text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+    
+    <!-- Header -->
+    <div class="flex flex-col items-center text-center mb-10 gap-2">
+      <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold font-semibold">
+        Direct Counsel
+      </span>
+      <h2
+        id="contact-heading"
+        class="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight"
       >
-        Send inquiry
-      </button>
+        Send an Inquiry
+      </h2>
+      <p class="font-sans text-muted text-xs sm:text-sm max-w-md">
+        Submit a brief summary of your matter. Please do not transmit sensitive or privileged documents over unencrypted forms.
+      </p>
+    </div>
 
-      <p id="form-status" class="font-sans text-sm text-center text-muted hidden" aria-live="polite"></p>
-    </form>
+    <!-- Frosted Glass Form Card -->
+    <div class="relative p-6 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] overflow-hidden">
+      <!-- Ambient corner glow -->
+      <div class="pointer-events-none absolute -top-24 -right-24 w-48 h-48 bg-gold/10 rounded-full blur-3xl -z-10" aria-hidden="true"></div>
+
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="flex flex-col gap-5"
+        novalidate
+        id="contact-form"
+      >
+        <p class="hidden" aria-hidden="true">
+          <label>Don't fill this: <input name="bot-field" /></label>
+        </p>
+        <input type="hidden" name="form-name" value="contact" />
+
+        <!-- 2-column on desktop: Name & Phone -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label for="cf-name" class="font-sans text-xs font-medium text-white/90">
+              Full Name <span class="text-gold" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text" id="cf-name" name="name" required autocomplete="name" maxlength="100"
+              placeholder="e.g. Rahul Sharma" aria-required="true" aria-describedby="name-error"
+              class="min-h-[48px] rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 font-sans text-sm text-white placeholder:text-muted/60 focus:outline-none focus:border-gold/60 focus:ring-1 focus:ring-gold/60 transition-all duration-200"
+            />
+            <span id="name-error" class="font-sans text-xs text-red-400 hidden" role="alert">
+              Please enter your name.
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="cf-phone" class="font-sans text-xs font-medium text-white/90">
+              Contact Number <span class="text-gold" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="tel" id="cf-phone" name="phone" required autocomplete="tel"
+              placeholder="+91 98XXX XXXXX" aria-required="true" aria-describedby="phone-error"
+              class="min-h-[48px] rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 font-sans text-sm text-white placeholder:text-muted/60 focus:outline-none focus:border-gold/60 focus:ring-1 focus:ring-gold/60 transition-all duration-200"
+            />
+            <span id="phone-error" class="font-sans text-xs text-red-400 hidden" role="alert">
+              Please enter a valid phone number.
+            </span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="flex flex-col gap-1.5">
+          <label for="cf-message" class="font-sans text-xs font-medium text-white/90">
+            Matter Summary <span class="text-gold" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id="cf-message" name="message" required rows="4" maxlength="1000"
+            placeholder="Briefly state the nature of your dispute or legal requirement…"
+            aria-required="true" aria-describedby="message-error"
+            class="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 font-sans text-sm text-white placeholder:text-muted/60 focus:outline-none focus:border-gold/60 focus:ring-1 focus:ring-gold/60 transition-all duration-200 resize-none"
+          ></textarea>
+          <span id="message-error" class="font-sans text-xs text-red-400 hidden" role="alert">
+            Please describe your inquiry.
+          </span>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="min-h-[50px] mt-2 rounded-xl bg-gradient-to-r from-gold via-gold-light to-gold text-[#08090d] hover:brightness-110 active:scale-[0.98] transition-all duration-200 font-sans font-semibold text-sm shadow-[0_0_20px_rgba(229,195,120,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold cursor-pointer"
+        >
+          Submit Inquiry Brief
+        </button>
+
+        <p id="form-status" class="font-sans text-sm text-center text-muted hidden" aria-live="polite"></p>
+      </form>
+    </div>
+
   </div>
 </section>
 

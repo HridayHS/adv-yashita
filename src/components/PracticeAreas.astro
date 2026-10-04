@@ -1,26 +1,116 @@
 ---
 import { site } from "../data/site";
+
+const areas = [
+  {
+    title: "Civil Matters",
+    tag: "Trial & Appellate",
+    desc: site.areas.civil,
+    details: "Disputes, injunction suits, property claims, and appellate proceedings.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l9-4 9 4M4 10l5 9m11-9l-5 9M12 2v20M8 22h8" />`,
+  },
+  {
+    title: "Family Matters",
+    tag: "Mediation & Relief",
+    desc: site.areas.family,
+    details: "Matrimonial disputes, custody petitions, maintenance, and domestic matters.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />`,
+  },
+  {
+    title: "Commercial Matters",
+    tag: "Contracts & Recovery",
+    desc: site.areas.commercial,
+    details: "Commercial suits, contractual breaches, debt recovery, and business agreements.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />`,
+  },
+  {
+    title: "Legal Documentation",
+    tag: "Precision Drafting",
+    desc: site.areas.documentation,
+    details: "Formal notices, deed drafting, affidavits, commercial contracts, and MOU execution.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />`,
+  },
+];
 ---
-<section id="practice" aria-labelledby="practice-heading" class="py-14 px-6 bg-surface">
-  <div class="mx-auto max-w-2xl">
-    <h2 id="practice-heading" class="font-serif text-3xl font-semibold text-navy mb-10">Areas of Practice</h2>
-    <ul role="list" class="space-y-6">
-      <li class="border-l-2 border-gold pl-4 py-2">
-        <h3 class="font-serif text-[1.25rem] font-semibold text-navy mb-1.5">Civil matters</h3>
-        <p class="font-sans text-sm text-muted leading-relaxed">{site.areas.civil}</p>
-      </li>
-      <li class="border-l-2 border-gold pl-4 py-2">
-        <h3 class="font-serif text-[1.25rem] font-semibold text-navy mb-1.5">Family matters</h3>
-        <p class="font-sans text-sm text-muted leading-relaxed">{site.areas.family}</p>
-      </li>
-      <li class="border-l-2 border-gold pl-4 py-2">
-        <h3 class="font-serif text-[1.25rem] font-semibold text-navy mb-1.5">Commercial matters</h3>
-        <p class="font-sans text-sm text-muted leading-relaxed">{site.areas.commercial}</p>
-      </li>
-      <li class="border-l-2 border-gold pl-4 py-2">
-        <h3 class="font-serif text-[1.25rem] font-semibold text-navy mb-1.5">Documentation</h3>
-        <p class="font-sans text-sm text-muted leading-relaxed">{site.areas.documentation}</p>
-      </li>
-    </ul>
+<section id="practice" aria-labelledby="practice-heading" class="py-20 px-6 relative">
+  <div class="mx-auto max-w-4xl">
+    
+    <!-- Section Header with refined typography -->
+    <div class="flex flex-col items-center text-center mb-12 sm:mb-16 gap-3">
+      <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold font-semibold">
+        Core Practice
+      </span>
+      <h2 id="practice-heading" class="font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight">
+        Areas of Practice
+      </h2>
+      <p class="max-w-lg font-sans text-xs sm:text-sm text-muted">
+        Focused legal counsel and diligent representation across key civil and commercial jurisdictions.
+      </p>
+    </div>
+
+    <!-- 2x2 Raycast / Linear Spotlight Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6" id="bento-container">
+      {areas.map((area) => (
+        <article class="spotlight-card group relative p-6 sm:p-8 rounded-2xl overflow-hidden cursor-default">
+          <!-- Interactive Spotlight Glow overlay -->
+          <div
+            class="card-spotlight-layer pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-2xl"
+            aria-hidden="true"
+          ></div>
+
+          <div class="relative z-10 flex flex-col h-full justify-between gap-6">
+            
+            <!-- Top bar with icon and tag badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-xl bg-gold/[0.08] border border-gold/20 flex items-center justify-center text-gold transition-colors duration-200 group-hover:bg-gold/15 group-hover:border-gold/40">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" set:html={area.icon}></svg>
+              </div>
+
+              <span class="font-sans text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-gold-light/80 font-medium">
+                {area.tag}
+              </span>
+            </div>
+
+            <!-- Content -->
+            <div class="flex flex-col gap-2">
+              <h3 class="font-serif text-xl sm:text-2xl font-semibold text-white group-hover:text-gold-light transition-colors duration-200">
+                {area.title}
+              </h3>
+              <p class="font-sans text-sm text-body/90 leading-relaxed font-light">
+                {area.desc}
+              </p>
+            </div>
+
+            <!-- Micro-details footer -->
+            <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between">
+              <span class="font-sans text-xs text-muted font-light">
+                {area.details}
+              </span>
+              <span class="text-gold/60 text-xs font-mono group-hover:translate-x-1 group-hover:text-gold transition-all duration-200">
+                →
+              </span>
+            </div>
+
+          </div>
+        </article>
+      ))}
+    </div>
+
   </div>
 </section>
+
+<script>
+  // Dynamic spotlight tracker for Bento cards (Linear / Raycast effect)
+  const cards = document.querySelectorAll<HTMLElement>('.spotlight-card');
+  cards.forEach((card) => {
+    const spotlight = card.querySelector<HTMLElement>('.card-spotlight-layer');
+    if (!spotlight) return;
+
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      spotlight.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(229, 195, 120, 0.12), transparent 75%)`;
+    });
+  });
+</script>

@@ -2,11 +2,22 @@
 import { site } from "../data/site";
 const year = new Date().getFullYear();
 ---
-<footer class="bg-navy text-white/60 py-10 px-6 border-t border-gold">
+<footer class="relative pt-12 pb-16 px-6 overflow-hidden">
+  <!-- Subtle center gold divider line with gradient fade -->
+  <div class="h-[1px] w-full max-w-xl mx-auto bg-gradient-to-r from-transparent via-gold/35 to-transparent mb-10" aria-hidden="true"></div>
+
   <div class="mx-auto max-w-2xl flex flex-col items-center gap-3 text-center font-sans text-xs leading-relaxed">
-    <p class="font-serif text-base font-normal text-white">{site.name} — {site.designation}</p>
-    {site.enrolmentNumber && <p class="text-white/70">Enrolment: {site.enrolmentNumber}</p>}
-    <p class="max-w-md">In accordance with the rules of the Bar Council of India, this website is for information only and is not advertising or solicitation. Sending a message does not create an advocate-client relationship.</p>
-    <p class="mt-1 text-white/50">&copy; {year} {site.name}. All rights reserved.</p>
+    <p class="font-serif text-lg font-medium text-white tracking-wide">
+      {site.name} <span class="text-gold/60 mx-1.5">·</span> {site.designation}
+    </p>
+    {site.enrolmentNumber && (
+      <p class="text-gold-light/75 tracking-wider font-mono text-[11px]">
+        {site.enrolmentBody} · Enrolment No. {site.enrolmentNumber}
+      </p>
+    )}
+    <p class="max-w-lg text-muted/70 text-[11px] leading-normal pt-2">
+      In accordance with Rule 36 of the Bar Council of India, this website is intended solely for general informational purposes and does not constitute advertising, solicitation, or legal advice. Communication through this platform does not establish an advocate-client relationship.
+    </p>
+    <p class="mt-2 text-muted/50 text-[11px]">&copy; {year} {site.name}. All rights reserved.</p>
   </div>
 </footer>

@@ -44,7 +44,7 @@ const jsonLd = {
   <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
   <meta property="og:url" content="https://advyashita.in" />
   <meta property="og:image" content="https://advyashita.in/og-image.jpg" />
-  <meta name="theme-color" content="#3d3f65" />
+  <meta name="theme-color" content="#08090d" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,8 +55,27 @@ const jsonLd = {
   />
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </head>
-<body class="bg-surface text-body">
+<body class="bg-surface text-body selection:bg-gold/20 selection:text-white">
+  <!-- Interactive Cursor Spotlight Glow -->
+  <div id="ambient-spotlight" class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-500 opacity-0" aria-hidden="true"></div>
+  
   <a href="#main-content" class="skip-link">Skip to content</a>
-  <slot />
+  <div class="relative z-10">
+    <slot />
+  </div>
+
+  <script>
+    // Smooth mouse-following spotlight effect (Linear / Raycast vibe)
+    const spotlight = document.getElementById('ambient-spotlight');
+    if (spotlight && window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        spotlight.style.opacity = '1';
+        spotlight.style.background = `radial-gradient(700px circle at ${e.clientX}px ${e.clientY}px, rgba(229, 195, 120, 0.05), rgba(30, 41, 69, 0.08) 40%, transparent 80%)`;
+      }, { passive: true });
+      window.addEventListener('mouseleave', () => {
+        spotlight.style.opacity = '0';
+      });
+    }
+  </script>
 </body>
 </html>
