@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://advyashita.in/sitemap-index.xml
