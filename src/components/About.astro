@@ -8,12 +8,7 @@ if (site.enrolmentNumber && site.enrolmentBody) {
 } else if (site.enrolmentBody) {
   bioParts.push(`${site.name} is enrolled with ${site.enrolmentBody}${site.enrolmentYear ? ` (${site.enrolmentYear})` : ''}.`);
 }
-if (site.degree) {
-  bioParts.push(`${site.degree}.`);
-}
-if (site.courts) {
-  bioParts.push(`Practises in ${site.courts}.`);
-}
+
 ---
 {bioParts.length > 0 && (
   <section

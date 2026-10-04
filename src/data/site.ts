@@ -5,9 +5,7 @@ export interface SiteData {
   enrolmentNumber: string;
   enrolmentBody: string;
   enrolmentYear: string;
-  education: string;
-  courts: string;
-  languages: string;
+
   phone: string;
   whatsapp: string;
   email: string;
@@ -26,9 +24,6 @@ export const site: SiteData = {
   enrolmentNumber: "D/6409/2026",
   enrolmentBody: "Bar Council of Delhi",
   enrolmentYear: "2026",
-  education: "", // e.g. "LLB, University of Delhi"
-  courts: "", // e.g. "District Courts, Delhi"
-  languages: "", // e.g. "English, Hindi"
   phone: "+919811131750",
   whatsapp: "919811131750",
   email: "yashitarajput47@gmail.com",
